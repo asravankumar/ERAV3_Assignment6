@@ -79,6 +79,26 @@ The model uses a Convolutional Neural Network (CNN) with the following architect
    - BatchNorm, Dropout(0.1), ReLU
    - Parameters: (3×3×32×10) + 10 = 2,890 conv params + 20 BN params = 2,910 params
 
+### Network Architecture and Receptive Field Details
+
+| **Layer**           | **Input Size (HxW)** | **Output Size (HxW)** | **Input Channels** | **Output Channels** | **Receptive Field (RF)** | **Details**                                   |
+|----------------------|----------------------|------------------------|---------------------|----------------------|--------------------------|-----------------------------------------------|
+| **Input**            | 28x28               | 28x28                 | 1                   | 1                    | 1                        | Initial image                                 |
+| **Conv1**            | 28x28               | 28x28                 | 1                   | 12                   | 3                        | Kernel: 3x3, Padding: 1                      |
+| **Conv2**            | 28x28               | 28x28                 | 12                  | 32                   | 5                        | Kernel: 3x3, Padding: 1                      |
+| **MaxPool1**         | 28x28               | 14x14                 | 32                  | 32                   | 6                        | Kernel: 2x2, Stride: 2                       |
+| **Transition1 (1x1)**| 14x14               | 14x14                 | 32                  | 12                   | 6                        | Kernel: 1x1, No change to RF                 |
+| **Conv3**            | 14x14               | 14x14                 | 12                  | 16                   | 10                       | Kernel: 3x3, Padding: 1                      |
+| **Conv4**            | 14x14               | 14x14                 | 16                  | 32                   | 14                       | Kernel: 3x3, Padding: 1                      |
+| **MaxPool2**         | 14x14               | 7x7                   | 32                  | 32                   | 16                       | Kernel: 2x2, Stride: 2                       |
+| **Transition2 (1x1)**| 7x7                 | 7x7                   | 32                  | 12                   | 16                       | Kernel: 1x1, No change to RF                 |
+| **Conv5**            | 7x7                 | 7x7                   | 12                  | 32                   | 24                       | Kernel: 3x3, Padding: 1                      |
+| **Conv6**            | 7x7                 | 5x5                   | 32                  | 10                   | 32                       | Kernel: 3x3, No Padding                      |
+| **GAP**              | 5x5                 | 1x1                   | 10                  | 10                   | 32                       | Adaptive Average Pooling to 1x1              |
+| **Output**           | 1x1                 | 1x1                   | 10                  | 10                   | 32                       | Final output after GAP                       |
+
+
+
 ### Output Block
 - Global Average Pooling
 - Log Softmax
