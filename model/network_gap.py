@@ -9,7 +9,6 @@ class Net(nn.Module):
         # Input image size : 28x28
 
         # Convolution Layer 1
-        #self.conv1 = nn.Conv2d(1, 32, 3, padding=1) #input -? OUtput? RF
         self.conv1 = nn.Sequential(
             nn.Conv2d(1, 12, kernel_size=3, padding=1), # Input Channels - 1, Output Channels - 12
             nn.BatchNorm2d(12),
@@ -18,9 +17,8 @@ class Net(nn.Module):
         )
         
         # Convolution Layer 2
-        #self.conv2 = nn.Conv2d(32, 64, 3, padding=1)
         self.conv2 = nn.Sequential(
-            nn.Conv2d(12, 32, kernel_size=3, padding=1), # Input Channels - 12, Output Channels - 24
+            nn.Conv2d(12, 32, kernel_size=3, padding=1),
             nn.BatchNorm2d(32),
             nn.Dropout(0.1),
             nn.ReLU()
@@ -28,23 +26,21 @@ class Net(nn.Module):
         
         # Transition Layer 1 - MaxPool and 1x1 conv
         self.transition1 = nn.Sequential(
-            nn.MaxPool2d(2, 2),     # Input Channels - 24, Output Channels - 24
-            nn.Conv2d(32, 12, kernel_size=1, padding=0),   # Input Channels - 24, Output Channels - 12
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(32, 12, kernel_size=1, padding=0),
         )
 
         # Convolution Layer 3
-        #self.conv3 = nn.Conv2d(64, 128, 3, padding=1)
         self.conv3 = nn.Sequential(
-            nn.Conv2d(12, 16, kernel_size=3, padding=1), # Input Channels - 12, Output Channels - 16
+            nn.Conv2d(12, 16, kernel_size=3, padding=1),
             nn.BatchNorm2d(16),
             nn.Dropout(0.1),
             nn.ReLU()
         )
 
         # Convolution Layer 4
-        #self.conv4 = nn.Conv2d(128, 256, 3, padding=1)
         self.conv4 = nn.Sequential(
-            nn.Conv2d(16, 32, kernel_size=3, padding=1), # Input Channels - 12, Output Channels - 16
+            nn.Conv2d(16, 32, kernel_size=3, padding=1),
             nn.BatchNorm2d(32),
             nn.Dropout(0.1),
             nn.ReLU()
@@ -52,13 +48,13 @@ class Net(nn.Module):
 
         # Transition Layer 2 - MaxPool and 1x1 conv
         self.transition2 = nn.Sequential(
-            nn.MaxPool2d(2, 2),     # Input Channels - 24, Output Channels - 24
-            nn.Conv2d(32, 12, kernel_size=1, padding=0),   # Input Channels - 24, Output Channels - 12
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(32, 12, kernel_size=1, padding=0),
         )
         
         # Convolution Layer 5
         self.conv5 = nn.Sequential(
-            nn.Conv2d(12, 32, kernel_size=3, padding=1), # Input Channels - 12, Output Channels - 16
+            nn.Conv2d(12, 32, kernel_size=3, padding=1),
             nn.BatchNorm2d(32),
             nn.Dropout(0.1),
             nn.ReLU()
@@ -66,7 +62,7 @@ class Net(nn.Module):
 
         # Convolution Layer 6
         self.conv6 = nn.Sequential(
-            nn.Conv2d(32, 10, kernel_size=3, padding=0), # Input Channels - 12, Output Channels - 16
+            nn.Conv2d(32, 10, kernel_size=3, padding=0),
             nn.BatchNorm2d(10),
             nn.Dropout(0.1),
             nn.ReLU()
@@ -74,7 +70,7 @@ class Net(nn.Module):
         
         # Convolution Layer 7
         self.conv7 = nn.Sequential(
-            nn.Conv2d(12, 10, kernel_size=3, padding=0), # Input Channels - 12, Output Channels - 16
+            nn.Conv2d(12, 10, kernel_size=3, padding=0),
             nn.ReLU()
         )
         
