@@ -280,7 +280,6 @@ The model shows steady improvement across epochs:
 ## Training Parameters
 - Batch Size: The model is trained in batches
 - Optimizer: Used for model parameter updates
-- Learning Rate Schedule: Appears to use a learning rate scheduler based on the presence of train2_steplr.py
 
 Note: For complete network architecture details and specific hyperparameters, please refer to the model/network.py file.
 ```
